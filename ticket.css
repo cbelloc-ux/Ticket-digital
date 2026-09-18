@@ -1,0 +1,188 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   ticket.css — Ticket digital.
+   Réplica del ticket físico de H-E-B: papel claro, secciones separadas por
+   líneas finas, cifras tabulares y códigos de barras.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --paper:      #f6f5f1;
+  --paper-line: #e0dbcf;
+  --paper-ink:  #221f19;
+  --paper-ink2: #6b6558;
+}
+
+.ticket-modal-sub {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 14px; font-weight: 800; line-height: 18px;
+  color: var(--ink);
+  padding: 0 20px 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+/* ── Papel ─────────────────────────────────────────────────────────────── */
+.ticket {
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 384px;
+  margin: 0 auto;
+  color: var(--paper-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.tk-sec { padding: 14px 16px; }
+.tk-sec + .tk-sec { border-top: 1px solid var(--paper-line); }
+.tk-center { text-align: center; }
+
+.tk-logo { display: flex; justify-content: center; padding: 22px 16px; }
+.heb-mark { display: block; }
+
+.tk-hello  { font-size: 13px; font-weight: 800; line-height: 18px; }
+.tk-thanks { font-size: 13px; font-weight: 400; line-height: 18px; margin-top: 2px; }
+
+.tk-label  { font-size: 11px; font-weight: 400; line-height: 16px; color: var(--paper-ink2); }
+.tk-folio  { font-size: 15px; font-weight: 800; line-height: 22px; letter-spacing: .4px; margin-top: 3px; }
+.tk-phone  { font-size: 11px; line-height: 15px; }
+.tk-phone strong { font-weight: 800; }
+
+/* ── Tabla de artículos ────────────────────────────────────────────────── */
+/* El bloque de artículos guarda una altura mínima para que un ticket corto
+   siga leyéndose como una tira de papel, igual que en la referencia. */
+.tk-items { min-height: 196px; }
+
+.tk-table { width: 100%; border-collapse: collapse; }
+.tk-table th {
+  font-size: 12px; font-weight: 800; line-height: 17px;
+  text-align: right;
+  padding-bottom: 8px;
+}
+.tk-table th:first-child { text-align: left; }
+.tk-table td {
+  font-size: 12px; font-weight: 400; line-height: 20px;
+  text-align: right;
+  vertical-align: top;
+  padding: 2px 0;
+}
+.tk-table td:first-child { text-align: left; padding-right: 8px; }
+.tk-table .tk-col-qty  { width: 34px; }
+.tk-table .tk-col-unit { width: 58px; }
+.tk-table .tk-col-tot  { width: 54px; }
+/* El código del artículo se imprime como una línea más de la columna ARTICULO,
+   con el mismo cuerpo y tono que el nombre del producto. */
+.tk-sku { font-size: 12px; line-height: 20px; color: var(--paper-ink); letter-spacing: .2px; }
+
+/* ── Totales ───────────────────────────────────────────────────────────── */
+.tk-totals-head {
+  display: flex; justify-content: space-between; gap: 8px;
+  font-size: 12px; font-weight: 800; line-height: 20px;
+  margin-bottom: 2px;
+}
+.tk-row {
+  display: flex; justify-content: flex-end; gap: 10px;
+  font-size: 12px; line-height: 20px;
+}
+.tk-row .tk-v { min-width: 54px; text-align: right; }
+.tk-row.tk-strong { font-weight: 800; }
+
+.tk-pay {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  font-size: 13px; line-height: 20px;
+}
+.tk-pay .tk-k { font-weight: 800; }
+.tk-pay .tk-v { text-align: right; }
+.tk-pay .tk-v .tk-mask { letter-spacing: .5px; }
+
+/* ── Ahorro ────────────────────────────────────────────────────────────── */
+/* Colores y medidas muestreados del nodo 5231:46977 del frame del ticket:
+   fondo #34c759, texto #155024, alto 33px con el rótulo a 14px. */
+.tk-savings-pill {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  background: #34c759;
+  color: #155024;
+  font-size: 14px; font-weight: 800; line-height: 19px;
+  padding: 7px 20px;
+  border-radius: 9999px;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* ── Códigos de barras ─────────────────────────────────────────────────── */
+.tk-barcode-box {
+  background: #ecebe6;
+  border-radius: 10px;
+  padding: 10px 14px 8px;
+}
+.barcode { display: block; }
+.tk-barcode-text {
+  text-align: center;
+  font-size: 12px; font-weight: 700; line-height: 18px;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+.tk-caja { font-size: 11px; line-height: 16px; color: var(--paper-ink); }
+
+/* ── Facturación ───────────────────────────────────────────────────────── */
+.tk-invoice {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  flex-wrap: wrap;
+}
+.tk-invoice-btn {
+  background: #dfe9f5;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 14px;
+  font-family: var(--fn);
+  font-size: 11px; font-weight: 800; line-height: 15px;
+  color: #1f3f6b;
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.tk-invoice-btn:hover { background: #cddff2; }
+.tk-invoice-url { font-size: 11px; font-weight: 700; color: var(--ink-3); }
+
+/* ── Legal y promo ─────────────────────────────────────────────────────── */
+.tk-legal {
+  font-size: 9.5px; line-height: 14px; color: var(--paper-ink2); text-align: center;
+}
+.tk-legal p + p { margin-top: 1px; }
+.tk-promo { font-size: 10.5px; line-height: 15px; text-align: center; color: var(--paper-ink); }
+.tk-afil  { font-size: 10px; line-height: 14px; text-align: center; color: var(--paper-ink); }
+.tk-afil-nums {
+  display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  font-size: 11px; font-weight: 800; line-height: 16px;
+  margin-top: 3px;
+}
+
+/* ── Botón de descarga ─────────────────────────────────────────────────── */
+.ticket-modal-footer .btn .msi { font-size: 20px; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   IMPRESIÓN — "Descargar ticket" abre el diálogo del sistema para guardar
+   el ticket como PDF. Sólo se imprime el papel, sin cromo de la app.
+   ══════════════════════════════════════════════════════════════════════════ */
+#printRoot { display: none; }
+
+@media print {
+  @page { margin: 12mm; }
+
+  body.printing > *:not(#printRoot) { display: none !important; }
+
+  #printRoot {
+    display: block !important;
+    background: white;
+  }
+  #printRoot .ticket {
+    max-width: 78mm;
+    border: none;
+    background: white;
+    box-shadow: none;
+  }
+  #printRoot .tk-barcode-box { background: #f1f0ec; }
+  #printRoot .tk-savings-pill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
