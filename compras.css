@@ -1,0 +1,226 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   compras.css — Listado "Mis compras" + filtros.
+   mobile  → filtros en bottom sheet · tarjetas a ancho completo
+   tablet  → filtros en sheet centrado · tarjetas más anchas, más miniaturas
+   desktop → 3 columnas: navegación de cuenta · tarjetas · panel de filtros
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.compras-head {
+  display: none;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.compras-head h1 {
+  font-size: 28px; font-weight: 800; line-height: 34px; letter-spacing: -.3px;
+  color: var(--ink);
+}
+
+/* Barra de resultados + botón de filtros */
+.compras-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+.compras-count {
+  font-size: 14px; font-weight: 700; line-height: 18px;
+  color: var(--ink-2);
+}
+.filtros-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-family: var(--fn); font-size: 14px; font-weight: 800; color: var(--ink);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.filtros-btn:hover { background: var(--subtle); }
+.filtros-btn .msi { font-size: 18px; }
+.filtros-btn .filtros-dot {
+  width: 8px; height: 8px; border-radius: 9999px;
+  background: var(--red);
+  display: none;
+}
+.filtros-btn.has-filters .filtros-dot { display: block; }
+
+/* ── Layout ────────────────────────────────────────────────────────────── */
+.compras-layout { display: block; }
+.compras-col { min-width: 0; }
+.compras-list { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; }
+
+/* ── Tarjeta de compra ─────────────────────────────────────────────────── */
+.order-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow var(--t-fast), transform var(--t-fast);
+}
+.order-card:hover { box-shadow: 0 4px 14px rgba(34,31,25,.11); }
+
+.order-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.order-type {
+  display: flex; align-items: center; gap: 8px;
+  flex: 1; min-width: 0;
+}
+.order-type-icon {
+  width: 24px; height: 24px; flex-shrink: 0;
+  display: block;
+}
+.order-type-label {
+  font-size: 15px; font-weight: 800; line-height: 20px; color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.order-id {
+  font-size: 13px; font-weight: 400; line-height: 17px; color: var(--ink-2);
+  margin-top: -6px;
+}
+
+.order-meta { display: flex; flex-direction: column; gap: 2px; }
+.order-meta span { font-size: 14px; font-weight: 400; line-height: 20px; color: var(--ink); }
+.order-meta strong { font-weight: 800; }
+
+/* Miniaturas */
+.order-thumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.order-thumb {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.order-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.order-thumb-more {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: var(--ink-2);
+}
+
+.order-card-actions { display: flex; gap: 10px; align-items: center; }
+
+/* ── Vacío ─────────────────────────────────────────────────────────────── */
+.compras-empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 48px 24px;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+}
+.compras-empty.show { display: flex; }
+.compras-empty .msi { font-size: 44px; color: var(--ink-3); }
+.compras-empty h2 { font-size: 18px; font-weight: 800; line-height: 24px; }
+.compras-empty p { font-size: 14px; color: var(--ink-2); line-height: 20px; max-width: 320px; }
+
+.compras-more { padding: 20px 16px 0; display: flex; justify-content: center; }
+.compras-more[hidden] { display: none; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FILTROS — grupos de radio (compartidos entre sheet y panel de desktop)
+   ══════════════════════════════════════════════════════════════════════════ */
+.filter-group + .filter-group { margin-top: 22px; }
+.filter-group h3 {
+  font-size: 15px; font-weight: 800; line-height: 20px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.filter-opt {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  background: none; border: none;
+  padding: 8px 0;
+  font-family: var(--fn); font-size: 14px; font-weight: 700; line-height: 18px;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+  transition: color var(--t-fast);
+}
+.filter-radio {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px var(--border);
+  transition: box-shadow .15s var(--ease-out);
+}
+.filter-opt[aria-checked="true"] .filter-radio {
+  box-shadow: inset 0 0 0 6px var(--blue);
+}
+.filter-opt:hover .filter-radio { box-shadow: inset 0 0 0 2px var(--ink-3); }
+.filter-opt[aria-checked="true"]:hover .filter-radio { box-shadow: inset 0 0 0 6px var(--blue); }
+
+/* Panel de filtros de desktop */
+.filters-panel { display: none; }
+
+/* ══ Tablet 768–1199px ══ */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .compras-toolbar { padding: 0 24px 16px; }
+  .compras-list { padding: 0 24px; gap: 16px; }
+  .order-card { padding: 20px; border-radius: 24px; }
+  .order-thumb, .order-thumb-more { width: 52px; height: 52px; border-radius: 12px; }
+  .compras-more { padding: 24px 24px 0; }
+}
+
+/* ══ Desktop ≥1200px ══ */
+@media (min-width: 1200px) {
+  .compras-head { display: flex; }
+  .compras-toolbar { padding: 0 0 16px; }
+  .filtros-btn { display: none; }
+
+  .account-layout { display: flex; align-items: flex-start; gap: 40px; padding-top: 28px; }
+  .account-main { flex: 1; min-width: 0; }
+
+  .compras-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .compras-col { flex: 1; min-width: 0; }
+  .compras-list { padding: 0; gap: 16px; }
+  .order-card { padding: 20px 24px; border-radius: 16px; }
+  .order-thumb, .order-thumb-more { width: 48px; height: 48px; }
+
+  .filters-panel {
+    display: block;
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    background: var(--subtle);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .filters-panel h2 {
+    font-size: 17px; font-weight: 800; line-height: 22px;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .filters-panel .filter-radio { background: var(--surface); }
+  .filters-panel .btn { margin-top: 22px; }
+
+  .compras-more { padding: 28px 0 0; }
+}

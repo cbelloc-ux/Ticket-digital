@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cuenta — H-E-B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="cuenta.css?v=10">
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="heb-header">
+  <div class="heb-header-top">
+    <button class="heb-icon-btn heb-header-lead-btn" aria-label="Menú"><span class="msi" aria-hidden="true">menu</span></button>
+
+    <a class="heb-logo-link" href="index.html" aria-label="H-E-B">
+      <img class="heb-logo" src="Assets/logo-heb-blanco.png" alt="H-E-B">
+    </a>
+
+    <button class="heb-search-bar" aria-label="Buscar en H-E-B">
+      <span>Busca en H-E-B</span>
+      <span class="msi" aria-hidden="true">search</span>
+    </button>
+
+    <div class="heb-search-desktop">
+      <input type="text" placeholder="Busca productos" aria-label="Busca productos">
+      <span class="msi" aria-hidden="true">search</span>
+    </div>
+
+    <div class="heb-header-divider" aria-hidden="true"></div>
+
+    <button class="heb-delivery-pill">
+      <span class="msi" aria-hidden="true">location_on</span>
+      <span>Recibe en <strong>Zimapán #302, Mitr...</strong></span>
+      <span class="msi" aria-hidden="true">keyboard_arrow_down</span>
+    </button>
+
+    <div class="heb-header-actions">
+      <a class="heb-account-btn is-active" href="index.html">
+        <span class="msi" aria-hidden="true">person</span><span>Mi cuenta</span>
+      </a>
+      <a class="heb-cart-btn" href="#">
+        <span class="msi" aria-hidden="true">shopping_cart</span>
+        <span>$480.60</span>
+        <span class="heb-cart-badge">15</span>
+      </a>
+    </div>
+
+    <a class="heb-icon-btn heb-cart-icon-btn" href="#" aria-label="Ir al carrito">
+      <span class="msi" aria-hidden="true">shopping_cart</span>
+      <span class="heb-cart-badge">15</span>
+    </a>
+  </div>
+
+  <button class="heb-delivery-bar">
+    ¿Cómo quieres recibir tu pedido?
+    <span class="msi" aria-hidden="true">keyboard_arrow_down</span>
+  </button>
+
+  <nav class="heb-pleca" aria-label="Categorías">
+    <button class="heb-pleca-item active"><span class="msi" aria-hidden="true">border_all</span> Pasillos</button>
+    <button class="heb-pleca-item">Nuestras marcas</button>
+    <button class="heb-pleca-item">Prime</button>
+    <button class="heb-pleca-item">Promociones</button>
+    <button class="heb-pleca-item">Vive Saludable</button>
+    <button class="heb-pleca-item">Mascotas</button>
+  </nav>
+</header>
+
+<!-- ══ CONTENIDO ══ -->
+<main class="heb-main">
+
+  <div class="page-bar page-bar--mobile-only">
+    <a class="back-btn" href="#" aria-label="Regresar"><span class="msi" aria-hidden="true">arrow_back</span></a>
+    <h1 class="vt-title">Mi cuenta</h1>
+    <span class="page-bar-spacer" aria-hidden="true"></span>
+  </div>
+
+  <div class="acct-greet">
+    <div class="acct-avatar" aria-hidden="true">MG</div>
+    <div>
+      <div class="acct-greet-hello">Hola,</div>
+      <div class="acct-greet-name">Mariana Garza</div>
+    </div>
+  </div>
+
+  <div class="account-layout">
+
+    <!-- Navegación de la cuenta: contenido en mobile/tablet · sidebar en desktop -->
+    <aside class="account-sidebar account-sidebar--page" aria-label="Mi cuenta">
+      <h2 class="acct-title">Mi Cuenta</h2>
+
+      <nav class="acct-nav">
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">person</span>
+          <span class="acct-item-text"><strong>Perfil</strong><small>Información de contacto y seguridad</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="compras.html">
+          <span class="msi" aria-hidden="true">shopping_bag</span>
+          <span class="acct-item-text"><strong>Mis compras</strong><small>Revisa tus compras en línea y en tienda, todo en un mismo lugar.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">location_on</span>
+          <span class="acct-item-text"><strong>Mis direcciones</strong><small>Consulta o edita tus direcciones de entrega.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">list_alt_add</span>
+          <span class="acct-item-text"><strong>Mis listas</strong><small>Tu despensa más rápido con tus listas de compra.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">credit_card</span>
+          <span class="acct-item-text"><strong>Mis métodos de pago</strong><small>Consulta o edita tus métodos de pago.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item acct-item--prime" href="#">
+          <span class="msi msi-fill" aria-hidden="true">stars</span>
+          <span class="acct-item-text"><strong>Membresía Prime</strong><small>Mejora tu experiencia de compra con beneficios exclusivos.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">calendar_month</span>
+          <span class="acct-item-text"><strong>Mis suscripciones</strong><small>Administra y consulta el historial de tus suscripciones.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <div class="acct-divider" role="separator"></div>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">settings</span>
+          <span class="acct-item-text"><strong>Preferencias de Contacto</strong><small>Personaliza dónde quieres recibir tus notificaciones, alertas y mensajes.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">info</span>
+          <span class="acct-item-text"><strong>Ayuda</strong><small>Dudas con tus compras en línea, tipos de entregas y preguntas frecuentes.</small></span>
+          <span class="msi acct-chevron" aria-hidden="true">chevron_right</span>
+        </a>
+
+        <a class="acct-item" href="#">
+          <span class="msi" aria-hidden="true">logout</span>
+          <span class="acct-item-text"><strong>Cerrar Sesión</strong></span>
+        </a>
+      </nav>
+
+      <div class="acct-legal">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Solicitud de baja</a>
+      </div>
+    </aside>
+
+    <!-- Panel de bienvenida — sólo desktop -->
+    <div class="account-main">
+      <div class="acct-welcome">
+        <div class="acct-hero">
+          <div class="acct-avatar" aria-hidden="true">MG</div>
+          <div>
+            <div class="acct-hero-name">Hola, Mariana Garza</div>
+            <div class="acct-hero-sub">mariana.garza@correo.com · Miembro Prime desde 2023</div>
+          </div>
+        </div>
+
+        <div class="acct-tiles">
+          <a class="acct-tile" href="compras.html">
+            <span class="msi" aria-hidden="true">shopping_bag</span>
+            <strong>Mis compras</strong>
+            <small>Revisa tus compras en línea y en tienda, y descarga tus tickets digitales.</small>
+          </a>
+          <a class="acct-tile" href="#">
+            <span class="msi" aria-hidden="true">location_on</span>
+            <strong>Mis direcciones</strong>
+            <small>Consulta o edita tus direcciones de entrega.</small>
+          </a>
+          <a class="acct-tile" href="#">
+            <span class="msi" aria-hidden="true">credit_card</span>
+            <strong>Mis métodos de pago</strong>
+            <small>Consulta o edita tus métodos de pago.</small>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="app.js?v=10"></script>
+</body>
+</html>

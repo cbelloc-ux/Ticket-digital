@@ -1,0 +1,189 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   cuenta.css — Página "Mi cuenta" y navegación lateral de la cuenta.
+   La misma marcación sirve para los tres breakpoints: en mobile/tablet es
+   el contenido de la página, en desktop (≥1200px) es la barra lateral.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Saludo (sólo mobile/tablet) ───────────────────────────────────────── */
+.acct-greet {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px 24px;
+}
+.acct-avatar {
+  width: 56px; height: 56px; flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--red);
+  color: white;
+  font-size: 18px; font-weight: 800; letter-spacing: .5px;
+  display: flex; align-items: center; justify-content: center;
+}
+.acct-greet-hello { font-size: 14px; color: var(--ink-2); line-height: 18px; }
+.acct-greet-name  { font-size: 20px; font-weight: 800; color: var(--ink); line-height: 26px; }
+
+/* ── Navegación de la cuenta ───────────────────────────────────────────── */
+.account-sidebar { display: none; }
+.account-sidebar--page { display: block; }
+
+.acct-title {
+  font-size: 22px; font-weight: 800; line-height: 28px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.account-sidebar--page .acct-title { display: none; }
+
+.acct-nav { display: flex; flex-direction: column; }
+
+.acct-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--fn);
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+  cursor: pointer;
+  width: 100%;
+  transition: background var(--t-fast);
+}
+.acct-item:hover { background: rgba(34,31,25,.045); }
+/* Los iconos de Mi Cuenta van en estilo fill; el chevron se queda outline. */
+.acct-item > .msi { font-size: 22px; color: var(--ink-nav); margin-top: 1px; }
+.acct-item > .msi:not(.acct-chevron),
+.acct-tile .msi {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.acct-item-text { flex: 1; min-width: 0; }
+.acct-item-text strong {
+  display: block;
+  font-size: 15px; font-weight: 800; line-height: 20px;
+  color: var(--ink-nav);
+}
+.acct-item-text small {
+  display: block;
+  font-size: 13px; font-weight: 400; line-height: 17px;
+  color: var(--ink-desc);
+  margin-top: 2px;
+}
+.acct-chevron { color: var(--ink-3); font-size: 22px; margin-top: 2px; }
+
+.acct-item.is-active { background: var(--subtle); }
+.acct-item.is-active .acct-item-text strong { color: var(--ink-nav); }
+
+.acct-item--prime > .msi:not(.acct-chevron) { color: #f2b705; }
+
+.acct-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 16px;
+}
+
+.acct-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 16px 8px;
+}
+.acct-legal a {
+  font-size: 13px; font-weight: 700; line-height: 17px;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.acct-legal a:hover { color: var(--ink-2); text-decoration: underline; }
+
+/* ── Panel de bienvenida (sólo desktop) ────────────────────────────────── */
+.acct-welcome { display: none; }
+
+.acct-hero {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+  margin-bottom: 20px;
+}
+.acct-hero .acct-avatar { width: 64px; height: 64px; font-size: 20px; }
+.acct-hero-name { font-size: 26px; font-weight: 800; line-height: 32px; letter-spacing: -.3px; }
+.acct-hero-sub  { font-size: 14px; color: var(--ink-2); line-height: 18px; margin-top: 2px; }
+
+.acct-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.acct-tile {
+  background: var(--surface);
+  border: none;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--fn);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.acct-tile:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(34,31,25,.12); }
+.acct-tile .msi { font-size: 26px; color: var(--red); }
+.acct-tile strong { font-size: 16px; font-weight: 800; line-height: 20px; color: var(--ink-nav); }
+.acct-tile small { font-size: 13px; color: var(--ink-desc); line-height: 17px; }
+
+/* ══ Tablet 768–1199px ══
+   La navegación sigue siendo la página completa, pero en dos columnas para
+   aprovechar el ancho — misma decisión de retícula que en flujo-sustitutos. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .acct-greet { padding: 8px 24px 28px; }
+  .account-sidebar--page .acct-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    padding: 0 8px;
+  }
+  .account-sidebar--page .acct-item {
+    background: var(--surface);
+    box-shadow: 0 1px 3px rgba(34,31,25,.06);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .account-sidebar--page .acct-item:hover { background: var(--surface); box-shadow: 0 4px 12px rgba(34,31,25,.11); }
+  .acct-divider { grid-column: 1 / -1; margin: 12px 8px; }
+  .acct-legal { padding: 28px 24px 8px; }
+}
+
+/* ══ Desktop ≥1200px ══ */
+@media (min-width: 1200px) {
+  .account-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding-top: 28px;
+  }
+  .account-sidebar {
+    display: block;
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+  }
+  .account-sidebar--page .acct-title { display: block; }
+  .acct-greet { display: none; }
+  .account-main { flex: 1; min-width: 0; }
+
+  .acct-item { padding: 12px; }
+  .acct-chevron { display: none; }
+  .acct-divider { margin: 12px 0; }
+  .acct-legal { padding: 24px 12px 8px; }
+
+  .acct-welcome { display: block; }
+}

@@ -1,0 +1,292 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   pedido.css — Detalle de la compra.
+   mobile  → una columna: entrega · productos · recompra · resumen · ticket
+   tablet  → una columna a 760px con tarjetas más amplias (misma jerarquía)
+   desktop → dos columnas: productos a la izquierda, entrega/resumen/CTAs
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.pedido-layout { display: block; padding: 0 16px; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 24px 0 10px;
+}
+.section-head h2 {
+  font-size: 18px; font-weight: 800; line-height: 24px; color: var(--ink-2);
+}
+.section-head .count {
+  font-size: 14px; font-weight: 700; line-height: 18px; color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SEGUIMIENTO DEL PEDIDO
+   Colores y proporciones muestreados del nodo 5231:46179 del frame de Figma:
+   relleno #1f7735, riel #d9d4c7, barra de 6px y separación de 16px entre pasos.
+   ══════════════════════════════════════════════════════════════════════════ */
+.progress-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 16px 4px;
+}
+.progress-row[hidden] { display: none; }
+
+.order-progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.progress-step { min-width: 0; }
+
+.progress-bar {
+  display: block;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--sunken);
+  overflow: hidden;
+}
+.progress-bar > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 9999px;
+  background: var(--success-ink);
+  transition: width .5s var(--ease-out);
+}
+
+.progress-label {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px; font-weight: 800; line-height: 17px;
+  color: var(--ink-3);
+}
+.progress-step.is-reached .progress-label { color: var(--ink); }
+
+/* Cancelado: los cuatro tramos en rojo y todas las etiquetas apagadas */
+.order-progress.is-cancelled .progress-bar > i { background: var(--red); }
+.order-progress.is-cancelled .progress-label { color: var(--ink-3); }
+
+.title-status {
+  flex-shrink: 0;
+  font-size: 16px; font-weight: 800; line-height: 20px;
+  color: var(--red);
+}
+.title-status[hidden] { display: none; }
+/* Con la etiqueta de estatus a la vista, el título recupera el ancho del
+   espaciador para no truncarse tan pronto en pantallas angostas. */
+.title-status:not([hidden]) ~ .page-bar-spacer { display: none; }
+
+/* Modificar pedido — habilitado sólo antes de que el pedido entre a preparación */
+.modificar-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  align-self: center;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 9999px;
+  padding: 11px 22px;
+  font-family: var(--fn); font-size: 14px; font-weight: 800; line-height: 18px;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--t-fast), transform .1s;
+}
+.modificar-btn .msi { font-size: 18px; }
+.modificar-btn:hover:not(:disabled) { background: var(--subtle); }
+.modificar-btn:active:not(:disabled) { transform: scale(.985); }
+.modificar-btn:disabled {
+  background: var(--subtle);
+  border-color: transparent;
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
+/* ── Detalles de entrega ───────────────────────────────────────────────── */
+#pedidoHero { view-transition-name: order-hero; }
+
+.delivery-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.delivery-row + .delivery-row {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.delivery-row > .msi { font-size: 22px; color: var(--ink-2); margin-top: 2px; }
+.delivery-label { font-size: 13px; font-weight: 400; line-height: 17px; color: var(--ink-2); }
+.delivery-value { font-size: 15px; font-weight: 800; line-height: 21px; color: var(--ink); margin-top: 2px; }
+.delivery-sub   { font-size: 14px; font-weight: 700; line-height: 20px; color: var(--ink); }
+
+.pedido-status {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 12px;
+}
+.pedido-type {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 15px; font-weight: 800; color: var(--ink);
+}
+.pedido-type .order-type-icon {
+  width: 24px; height: 24px; flex-shrink: 0; display: block;
+}
+
+/* ── Productos ─────────────────────────────────────────────────────────── */
+.product-list { display: flex; flex-direction: column; gap: 10px; }
+
+.product-row {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 1px 3px rgba(34,31,25,.07);
+}
+.product-row-img {
+  width: 52px; height: 52px; flex-shrink: 0;
+  border-radius: 10px; background: var(--bg);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.product-row-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.product-row-info { flex: 1; min-width: 0; }
+.product-row-name { font-size: 14px; font-weight: 600; line-height: 19px; color: var(--ink); }
+.product-row-qty  { font-size: 13px; font-weight: 400; line-height: 17px; color: var(--ink-2); margin-top: 2px; }
+.product-row-price {
+  font-size: 14px; font-weight: 800; color: var(--ink);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* ── Recompra ──────────────────────────────────────────────────────────── */
+.rebuy { margin-top: 16px; }
+.rebuy-note {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-top: 10px;
+}
+.rebuy-note .msi { font-size: 18px; color: var(--ink-2); margin-top: 1px; flex-shrink: 0; }
+.rebuy-note p { font-size: 13px; line-height: 18px; color: var(--ink-2); }
+.rebuy-note strong { color: var(--ink); font-weight: 800; }
+
+/* Cierra el bloque de recompra: en mobile separa de "Resumen del pedido",
+   en desktop separa de los botones de ticket y ayuda. */
+.cta-divider {
+  height: 1px;
+  background: var(--border);
+  margin-top: 20px;
+}
+
+/* ── Resumen ───────────────────────────────────────────────────────────── */
+.sum-line {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 0;
+}
+.sum-line .lbl { font-size: 14px; font-weight: 600; color: var(--ink); }
+.sum-line .val { font-size: 14px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.sum-line .val.free { color: var(--green); font-weight: 800; }
+.sum-line .val.save { color: var(--blue); font-weight: 800; }
+.sum-line.total { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 12px; }
+.sum-line.total .lbl { font-weight: 800; font-size: 15px; }
+.sum-line.total .val { font-weight: 800; font-size: 16px; }
+.sum-line.pay { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 12px; }
+.sum-line.pay .val { font-weight: 800; }
+
+/* ── CTAs del pedido ───────────────────────────────────────────────────── */
+.pedido-ctas { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+
+.chat-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  align-self: center;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 9999px;
+  padding: 12px 20px;
+  font-family: var(--fn); font-size: 15px; font-weight: 700; color: var(--ink);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.chat-btn:hover { background: var(--subtle); }
+.chat-btn { padding-left: 28px; padding-right: 28px; }
+.chat-btn .msi { color: #1d4ed8; font-size: 20px; }
+
+/* ══ Tablet 768–1199px ══
+   Se mantiene la columna única (misma decisión que el carrito de
+   flujo-sustitutos) pero con más aire y tarjetas más grandes. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .progress-row { padding: 8px 24px 4px; max-width: 760px; margin: 0 auto; }
+  .pedido-layout { padding: 0 24px; max-width: 760px; margin: 0 auto; }
+  .card { padding: 20px; border-radius: 20px; }
+  .product-row { padding: 14px 20px; border-radius: 20px; }
+  .product-row-img { width: 60px; height: 60px; }
+  .product-row-name { font-size: 15px; }
+  /* Los CTAs conservan el orden vertical del diseño: ticket y luego ayuda. */
+  .pedido-ctas { flex-direction: column; }
+}
+
+/* ══ Desktop ≥1200px ══ */
+@media (min-width: 1200px) {
+  /* Barra de título alineada a la izquierda, junto al botón de regreso */
+  .page-bar { justify-content: flex-start; margin-bottom: 20px; }
+  .page-bar h1 {
+    flex: 0 1 auto; text-align: left;
+    font-size: 28px; line-height: 34px; letter-spacing: -.3px;
+  }
+  .page-bar .page-bar-spacer { display: none; }
+
+  .progress-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0;
+    margin-bottom: 28px;
+  }
+  .order-progress { flex: 0 1 620px; }
+  .modificar-btn { align-self: flex-start; }
+
+  /* Retícula: productos ocupan la columna izquierda completa; a la derecha
+     se apilan entrega → resumen → recompra → ticket/ayuda. El orden del DOM
+     es el de mobile, así que la retícula reordena sólo en desktop. */
+  .pedido-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    grid-template-areas:
+      "productos entrega"
+      "productos resumen"
+      "productos rebuy"
+      "productos ctas";
+    align-items: start;
+    column-gap: 32px;
+    padding: 0;
+  }
+  .pl-productos { grid-area: productos; }
+  .pl-entrega   { grid-area: entrega; }
+  .pl-resumen   { grid-area: resumen; }
+  .pl-rebuy     { grid-area: rebuy; }
+  .pl-ctas      { grid-area: ctas; }
+
+  .pl-productos .section-head,
+  .pl-entrega .section-head { margin-top: 0; }
+
+  .pl-rebuy .rebuy { margin-top: 20px; }
+  .pedido-ctas { margin-top: 36px; gap: 20px; }
+  .chat-btn { align-self: stretch; }
+
+  .product-list { max-height: 640px; overflow-y: auto; padding-right: 6px; }
+  .product-list::-webkit-scrollbar { width: 8px; }
+  .product-list::-webkit-scrollbar-thumb { background: var(--sunken); border-radius: 9999px; }
+
+  .product-row { padding: 14px 20px; }
+  .product-row-img { width: 56px; height: 56px; }
+  .product-row-name { font-size: 15px; }
+}
